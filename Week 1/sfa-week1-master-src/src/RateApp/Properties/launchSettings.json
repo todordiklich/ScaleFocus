@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RateApp": {
+      "commandName": "Project",
+      "commandLineArgs": "yavor"
+    }
+  }
+}
