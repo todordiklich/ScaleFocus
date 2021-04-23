@@ -37,13 +37,33 @@ namespace SimpleToDoApp.Services
                 _applicationUsers = usersFromFile;
             }
         }
-        private bool CreateAdmin(string username, string password, string firstName, string lastName, bool isAdmin)
+        public bool DeleteUserById(int userId) 
         {
-            if (_applicationUsers.Any(u => u.Username == username))
+            User userToDelete = GetUserById(userId);
+
+            if (userToDelete == null)
             {
                 return false;
             }
 
+            _applicationUsers.Remove(userToDelete);
+
+            SaveToFile();
+
+            return true;
+        }
+        public User GetUserById(int userId)
+        {
+            User user = _applicationUsers.FirstOrDefault(u => u.Id == userId);
+
+            return user;
+        }
+        public IReadOnlyList<User> ListAllUsers()
+        {
+            return _applicationUsers.AsReadOnly();
+        }
+        private bool CreateAdmin(string username, string password, string firstName, string lastName, bool isAdmin)
+        {
             int newUniqueId = _applicationUsers.Count + 1;
 
             DateTime now = DateTime.Now;
@@ -80,6 +100,10 @@ namespace SimpleToDoApp.Services
         private void SaveToFile()
         {
             _storage.Write(StoreFileName, _applicationUsers);
+        }
+        public void SaveChanges()
+        {
+            SaveToFile();
         }
 
         public void Login(string userName, string password)
