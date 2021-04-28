@@ -8,7 +8,7 @@ namespace CLParserDemo
         {
             var options = new MyOptions();
 
-            CommandLine.Parser.Default.ParseArgumentsStrict(args, options, OnFail);
+            CommandLine.Parser.Default.ParseArgumentsS(args, options, OnFail);
 
             for (int i = 0; i < options.Times; i++)
             {
