@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleToDoApp.Models
 {
@@ -11,24 +8,22 @@ namespace SimpleToDoApp.Models
         private User(int id, DateTime creationDate, int creatorId, DateTime lastChangeDate, int lastChangeUserId)
             :base(id, creationDate, creatorId, lastChangeDate, lastChangeUserId)
         {
-            this.ToDoCollection = new List<ToDo>();
         }
-        public User(int id, DateTime creationDate, int creatorId, DateTime lastChangeDate, int lastChangeUserId, string username, string password, string firstName, string lastName, bool isAdmin)
+        public User(int id, DateTime creationDate, int creatorId, DateTime lastChangeDate, int lastChangeUserId, string userName, string password, string firstName, string lastName, bool isAdmin)
             : this(id, creationDate, creatorId, lastChangeDate, lastChangeUserId)
         {
-            this.Username = username;
+            this.UserName = userName;
             this.Password = password;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.IsAdmin = isAdmin;
         }
 
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool IsAdmin { get; set; }
-        public ICollection<ToDo> ToDoCollection { get; set; }
 
         public override string ToString()
         {
@@ -36,7 +31,7 @@ namespace SimpleToDoApp.Models
 
             sb.AppendLine(new string('=', 20))
                 .AppendLine($"Id: {this.Id}")
-                .AppendLine($"Username: {this.Username}")
+                .AppendLine($"User name: {this.UserName}")
                 .AppendLine($"Password: {this.Password}")
                 .AppendLine($"First Name: {this.FirstName}")
                 .AppendLine($"Last Name: {this.LastName}")

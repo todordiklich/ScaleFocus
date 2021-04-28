@@ -1,10 +1,9 @@
-﻿using SimpleToDoApp.Data;
-using SimpleToDoApp.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+
+using SimpleToDoApp.Data;
+using SimpleToDoApp.Models;
 
 namespace SimpleToDoApp.Services
 {
@@ -24,18 +23,23 @@ namespace SimpleToDoApp.Services
             List<User> usersFromFile = _storage.Read<List<User>>(StoreFileName);
             if (usersFromFile == null)
             {
-                string username = "admin";
+                string userName = "admin";
                 string password = "adminpassword";
                 string firstName = "admin";
                 string lastName = "admin";
                 bool isAdmin = true;
 
-                CreateAdmin(username, password, firstName, lastName, isAdmin);
+                CreateAdmin(userName, password, firstName, lastName, isAdmin);
             }
             else
             {
                 _applicationUsers = usersFromFile;
             }
+        }
+
+        public HashSet<int> GetAllUserIds()
+        {
+            return _applicationUsers.Select(u => u.Id).ToHashSet();
         }
         public bool DeleteUserById(int userId) 
         {
@@ -62,13 +66,13 @@ namespace SimpleToDoApp.Services
         {
             return _applicationUsers.AsReadOnly();
         }
-        private bool CreateAdmin(string username, string password, string firstName, string lastName, bool isAdmin)
+        private bool CreateAdmin(string userName, string password, string firstName, string lastName, bool isAdmin)
         {
             int newUniqueId = _applicationUsers.Count + 1;
 
             DateTime now = DateTime.Now;
 
-            var user = new User(newUniqueId, now, newUniqueId, now, newUniqueId, username, password, firstName, lastName, isAdmin);
+            var user = new User(newUniqueId, now, newUniqueId, now, newUniqueId, userName, password, firstName, lastName, isAdmin);
 
             _applicationUsers.Add(user);
 
@@ -77,18 +81,18 @@ namespace SimpleToDoApp.Services
             return true;
         }
 
-        public bool CreateUser(string username, string password, string firstName, string lastName, bool isAdmin, User creator)
+        public bool CreateUser(string userName, string password, string firstName, string lastName, bool isAdmin, User creator)
         {
-            if (_applicationUsers.Any(u => u.Username == username))
+            if (_applicationUsers.Any(u => u.UserName == userName))
             {
                 return false;
             }
 
-            int newUniqueId = _applicationUsers.Count + 1;
+            int newUniqueId = GenerateUserId();
 
             DateTime now = DateTime.Now;
 
-            var user = new User(newUniqueId, now, creator.Id, now, creator.Id, username, password, firstName, lastName, isAdmin);
+            var user = new User(newUniqueId, now, creator.Id, now, creator.Id, userName, password, firstName, lastName, isAdmin);
 
             _applicationUsers.Add(user);
 
@@ -96,6 +100,17 @@ namespace SimpleToDoApp.Services
 
             return true;
         }
+
+        private int GenerateUserId()
+        {
+            if (_applicationUsers.Any())
+            {
+                return _applicationUsers.Max(u => u.Id) + 1;
+            }
+
+            return 1;
+        }
+
 
         private void SaveToFile()
         {
@@ -108,7 +123,7 @@ namespace SimpleToDoApp.Services
 
         public void Login(string userName, string password)
         {
-            CurrentUser = _applicationUsers.FirstOrDefault(u => u.Username == userName && u.Password == password);
+            CurrentUser = _applicationUsers.FirstOrDefault(u => u.UserName == userName && u.Password == password);
         }
 
         public void LogOut()
