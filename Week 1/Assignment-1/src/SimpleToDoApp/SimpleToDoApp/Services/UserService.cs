@@ -37,11 +37,7 @@ namespace SimpleToDoApp.Services
             }
         }
 
-<<<<<<< HEAD:Week 1/Assignment-1/src/SimpleToDoApp/SimpleToDoApp/Services/UserService.cs
         public HashSet<int> GetAllUserIds()
-=======
-        public HashSet<int> GetAllUsersId()
->>>>>>> ae3c8d85bd2c5502475869c894e8900e15194c2a:Assignment-1/src/SimpleToDoApp/SimpleToDoApp/Services/UserService.cs
         {
             return _applicationUsers.Select(u => u.Id).ToHashSet();
         }
