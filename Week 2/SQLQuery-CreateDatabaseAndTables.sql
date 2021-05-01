@@ -1,4 +1,5 @@
 CREATE DATABASE SimpleToDoApp
+GO
 
 USE SimpleToDoApp
 
