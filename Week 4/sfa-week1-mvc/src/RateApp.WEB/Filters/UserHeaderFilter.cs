@@ -18,7 +18,7 @@ namespace RateApp.WEB.Filters
             {
                 Name = "Auth",
                 In = ParameterLocation.Header,
-                Required = false // set to false if this is optional
+                Required = true // set to false if this is optional
             });
         }
     }

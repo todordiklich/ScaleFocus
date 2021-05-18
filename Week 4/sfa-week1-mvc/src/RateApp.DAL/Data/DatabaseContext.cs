@@ -30,7 +30,7 @@ namespace RateApp.DAL.Data
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseSqlServer("Data Source=.\\;Initial Catalog=rateappdb;User Id=sa;Password=Pass@word");
+            optionsBuilder.UseSqlServer("Server=.;Database=RateApp;Trusted_Connection=True;");
 
         }
     }
