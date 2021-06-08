@@ -1,0 +1,8 @@
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  /p:CoverletOutput='./testresults/' /p:Exclude="[ProjectManagementApp.Models]*%2c[*]ProjectManagementApp.DAL*" 
+
+reportgenerator "-reports:.\ProjectManagementApp.BLL.UnitTests\testresults\coverage.cobertura.xml;.\ProjectManagementApp.WEB.UnitTests\testresults\coverage.cobertura.xml" -targetdir:.\testresults  
+
+
+Both Commands:
+
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  /p:CoverletOutput='./testresults/' /p:Exclude="[ProjectManagementApp.Models]*%2c[*]ProjectManagementApp.DAL*"; reportgenerator "-reports:.\ProjectManagementApp.BLL.UnitTests\testresults\coverage.cobertura.xml;.\ProjectManagementApp.WEB.UnitTests\testresults\coverage.cobertura.xml" -targetdir:.\testresults
