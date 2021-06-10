@@ -1,0 +1,8 @@
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  /p:CoverletOutput='./testresults/' /p:Exclude="[ProjectManagementApp.Models]*%2c[*]ProjectManagementApp.DAL*%2c[*]ProjectManagementApp.Program*%2c[*]ProjectManagementApp.Startup*%2c[*]ProjectManagementApp.WEB.Attributes*%2c[*]ProjectManagementApp.WEB.AuthorizationHelper*%2c[*]ProjectManagementApp.WEB.AutoMapperProfiles*%2c[*]ProjectManagementApp.WEB.CustomExceptionMiddleware*%2c[*]ProjectManagementApp.WEB.ExtensionMethods*%2c[*]ProjectManagementApp.WEB.Filters*%2c[*]ProjectManagementApp.WEB.Properties*"
+
+reportgenerator "-reports:.\ProjectManagementApp.BLL.UnitTests\testresults\coverage.cobertura.xml;.\ProjectManagementApp.WEB.UnitTests\testresults\coverage.cobertura.xml" -targetdir:.\testresults  
+
+
+Both Commands:
+
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  /p:CoverletOutput='./testresults/' /p:Exclude="[ProjectManagementApp.Models]*%2c[*]ProjectManagementApp.DAL*%2c[*]ProjectManagementApp.Program*%2c[*]ProjectManagementApp.Startup*%2c[*]ProjectManagementApp.WEB.Attributes*%2c[*]ProjectManagementApp.WEB.AuthorizationHelper*%2c[*]ProjectManagementApp.WEB.AutoMapperProfiles*%2c[*]ProjectManagementApp.WEB.CustomExceptionMiddleware*%2c[*]ProjectManagementApp.WEB.ExtensionMethods*%2c[*]ProjectManagementApp.WEB.Filters*%2c[*]ProjectManagementApp.WEB.Properties*"; reportgenerator "-reports:.\ProjectManagementApp.BLL.UnitTests\testresults\coverage.cobertura.xml;.\ProjectManagementApp.WEB.UnitTests\testresults\coverage.cobertura.xml" -targetdir:.\testresults
