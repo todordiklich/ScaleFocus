@@ -21,7 +21,6 @@ namespace RateApp.DAL.Data
                         Id = Guid.NewGuid().ToString("D"),
                         Email = "yavor@test.test",
                         NormalizedEmail = "yavor@test.test".ToUpper(),
-                        EmailConfirmed = true,
                         UserName = "yavor",
                         NormalizedUserName = "yavor".ToUpper(),
                         SecurityStamp = Guid.NewGuid().ToString("D")
